@@ -1,0 +1,40 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        vector<char> closings(0);
+        for (auto elem : s) {
+            if (elem == '(') {
+                closings.push_back(')');
+            } else if (elem == '[') {
+                closings.push_back(']');
+            } else if (elem == '{') {
+                closings.push_back('}');
+            } else if (elem == ')') {
+                if (!closings.empty() && closings[closings.size() - 1] == ')') {
+                    closings.erase(end(closings)-1);
+                } else {
+                    return false;
+                }
+            } else if (elem == ']') {
+                if (!closings.empty() && closings[closings.size() - 1] == ']') {
+                    closings.erase(end(closings)-1);
+                } else {
+                    return false;
+                }
+            } else if (elem == '}') {
+                if (!closings.empty() && closings[closings.size() - 1] == '}') {
+                    closings.erase(end(closings)-1);
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+        if (closings.size() == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+};
